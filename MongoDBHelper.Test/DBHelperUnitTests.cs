@@ -13,12 +13,32 @@ namespace MongoDBHelper.Test
             Assert.IsTrue(result);
         }
 
+        [DataRow("")]
+        [DataRow(null)]
+        [TestMethod]
+        public void IsApplictionInstalledReturnFalseWhenAppNameIsNullOrEmpty(string appName)
+        {
+            var dbHelper = new DBHelper();
+            var result = dbHelper.IsApplictionInstalled(appName);
+            Assert.IsFalse(result);
+        }
+
         [TestMethod]
         public void IsServerRunning()
         {
             var dbHelper = new DBHelper();
             var result = dbHelper.IsServerRunning("mongodb://localhost:27017");
             Assert.IsTrue(result);
+        }
+
+        [DataRow("")]
+        [DataRow(null)]
+        [TestMethod]
+        public void IsServerRunningReturnFalseWhenConnectionStringIsNullOrEmpty(string connectionString)
+        {
+            var dbHelper = new DBHelper();
+            var result = dbHelper.IsApplictionInstalled(connectionString);
+            Assert.IsFalse(result);
         }
     }
 }
